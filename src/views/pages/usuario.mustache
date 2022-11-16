@@ -1,5 +1,5 @@
 {{>partials/header}}
-<a href="">Adicionar Usuario</a>
+<a href="/cadastrar">Adicionar Usuario</a>
 <table border="1" width="100%">
     <tr>
         <th>ID</th>
@@ -7,5 +7,16 @@
         <th>EMAIL</th>
         <th>AÇÕES</th>
     </tr>
+    {{#users}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{nome}}</td>
+        <td>{{email}}</td>
+        <td>
+            <a href="/editar/{{id}}">[Editar]</a>
+            <a href="/excluir/{{id}}">[Excluir]</a>
+        </td>
+    </tr>
+    {{/users}}
 </table>
 {{>partials/footer}}

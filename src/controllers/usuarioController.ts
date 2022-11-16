@@ -9,3 +9,41 @@ export const index = async (req:Request, res:Response)=>{
         users
     })
 };
+export const cadastrar = async (req:Request, res:Response)=>{
+    res.render("pages/cadastrar",{
+    })
+};
+export const cadastroUsuario = async(req:Request,res:Response) =>{
+    const {nome, email} =req.body
+    if(nome && email){
+        await Usuario.create({
+            nome,
+            email
+        })
+    }
+    res.redirect('/usuarios')
+};
+
+export const editaUsuario = async(req:Request,res:Response)=>{
+    const{id} =req.params
+    const user =await Usuario.findByPk(id)
+    res.render('pages/editar',{
+        user,
+        id
+    })
+};
+
+export const atualizaUsuario = async(req:Request,res:Response)=>{
+    const {id} = req.params
+    const {nome, email} = req.body
+
+    await Usuario.update({
+        nome,
+        email
+    },{
+        where:{
+            id:id
+        }
+    })
+    res.redirect('/usuarios')
+}
